@@ -1,0 +1,20 @@
+<input type="text" id="search" placeholder="Search Donor Name">
+<table id="donation-table">
+    <thead><tr><th>Name</th><th>Date</th><th>Mode</th></tr></thead>
+    <tbody></tbody>
+</table>
+<script>
+    fetch('https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL/donations')
+        .then(res => res.json())
+        .then(data => {
+            const table = document.getElementById('donation-table').getElementsByTagName('tbody')[0];
+            document.getElementById('search').addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                table.innerHTML = '';
+                data.filter(d => d.name.toLowerCase().includes(query))
+                    .forEach(d => {
+                        table.innerHTML += `<tr><td>${d.name}</td><td>${d.date}</td><td>${d.mode}</td></tr>`;
+                    });
+            });
+        });
+</script>
