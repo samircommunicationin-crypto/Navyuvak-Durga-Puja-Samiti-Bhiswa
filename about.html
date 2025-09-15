@@ -1,0 +1,6 @@
+<div id="about-text">Loading about content...</div>
+<script>
+    fetch('https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL/about')
+        .then(res => res.text())
+        .then(text => document.getElementById('about-text').innerText = text);
+</script>
