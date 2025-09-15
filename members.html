@@ -1,0 +1,10 @@
+<div id="members-list">Loading members...</div>
+<script>
+    fetch('https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL/members')
+        .then(res => res.json())
+        .then(data => {
+            let html = '';
+            data.forEach(m => html += `<p>${m.name} - ${m.position}</p>`);
+            document.getElementById('members-list').innerHTML = html;
+        });
+</script>
